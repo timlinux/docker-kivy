@@ -1,5 +1,5 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-FROM ubuntu:trusty
+FROM ubuntu:12.04
 MAINTAINER Tim Sutton<tim@linfiniti.com>
 
 RUN  export DEBIAN_FRONTEND=noninteractive
@@ -12,7 +12,7 @@ RUN  dpkg-divert --local --rename --add /sbin/initctl
 # Or comment this line out if you do not with to use caching
 ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
+#RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get -y update
 
 #-------------Application Specific Stuff ----------------------------------------------------
@@ -20,7 +20,9 @@ RUN apt-get -y update
 # at https://github.com/dmkurilov/docker-kivy-pricise
 
 # Add i386 architecture
-dpkg --add-architecture i386
+#RUN echo 'foreign-architecture i386' > /etc/dpkg/dpkg.cfg.d/multiarch
+# Ubuntu > 12.04 can do this rather
+#RUN dpkg --add-architecture i386
 
 RUN  apt-get install -y build-essential mercurial git python2.7 \
   python-setuptools python-dev ffmpeg \
