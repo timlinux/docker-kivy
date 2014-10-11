@@ -1,5 +1,7 @@
 # docker-postgis
 
+**Note:** This project is still under construction.
+
 A simple docker container that provides a build environment for Kivy
 
 See: http://kivy.org/#home

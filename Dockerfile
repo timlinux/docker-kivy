@@ -13,6 +13,11 @@ RUN  dpkg-divert --local --rename --add /sbin/initctl
 ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
 #RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+
+# Add i386 architecture
+RUN echo 'foreign-architecture i386' > /etc/dpkg/dpkg.cfg.d/multiarch
+# Ubuntu > 12.04 can do this rather
+#RUN dpkg --add-architecture i386
 RUN apt-get -y update
 
 #-------------Application Specific Stuff ----------------------------------------------------
