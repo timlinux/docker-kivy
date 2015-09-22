@@ -1,4 +1,4 @@
-# docker-postgis
+# docker-kivy
 
 **Note:** This project is still under construction.
 
